@@ -1,0 +1,9 @@
+Package: com.good.once
+Name: niko
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: lu
+Author: lu
+Section: Tweaks

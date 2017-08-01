@@ -1,0 +1,9 @@
+Package: com.niko.top
+Name: path
+Architecture: iphoneos-arm
+Description: An awesome application!
+Maintainer: lu
+Author: lu
+Section: Utilities
+Version: 0.0.1-1+debug
+Installed-Size: 144

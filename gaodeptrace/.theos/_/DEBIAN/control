@@ -1,0 +1,10 @@
+Package: com.niko.test
+Name: gaodeptrace
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: niko
+Author: niko
+Section: Tweaks
+Version: 0.0.1-6+debug
+Installed-Size: 72
