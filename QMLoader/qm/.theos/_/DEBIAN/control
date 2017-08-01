@@ -1,0 +1,10 @@
+Package: com.niko.qm
+Name: QM
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: lu
+Author: lu
+Section: Tweaks
+Version: 0.0.1-4+debug
+Installed-Size: 2692

@@ -15,7 +15,7 @@
 		_sharedInstance = [[self alloc] init] ; 
 	});
 
-	return  _sharedInstance
+	return  _sharedInstance;
 } 
 
 
@@ -32,15 +32,15 @@
 %ctor{
 
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init] ; 
-	NSDictionary *prefs = [NSDictionary dictionaryWithContentOfFile:@"/var/mobile/Library/Preferences/com.niko.qm.plist"] ;
-	NSString *libraryPath = @"/Library/Application Support/FLEXLoader/FLEX.framework/FLEX";
+	NSDictionary *prefs = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/com.niko.qm.plist"] ;
+	NSString *libraryPath = @"/Library/Application Support/FLEXLoader/libFLEX.dylib";
 
-	NSString *keyPath = [NSString stringWithFormat:@"FLEXLoaderEnabled-%@", [[NSBundle mainBundle]bundleIdentifier]] ;
+	NSString *keyPath = [NSString stringWithFormat:@"QMLoaderEnabled-%@", [[NSBundle mainBundle]bundleIdentifier]] ;
 	NSLog(@"%@ %@" , libraryPath , prefs) ; 
 	if([[prefs objectForKey:keyPath] boolValue]){
 		if([[NSFileManager defaultManager] fileExistsAtPath:libraryPath])
 		{
-			void *handle = dlopen([libraryPath UTF8String],)
+			void *handle = dlopen([libraryPath UTF8String],RTLD_NOW);
 			if(handle == NULL)
 			{
 				NSLog(@"open lib error");
@@ -59,9 +59,9 @@
 	}
 	else
 	{
-		NSLog("ggggggggggg");
+		NSLog(@"ggggggggggg");
 	}
-	NSLog("loaded");
+	NSLog(@"loaded");
 	[pool drain];
 
 } 
