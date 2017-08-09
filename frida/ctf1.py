@@ -14,6 +14,15 @@ Java.perform(function(){
 });
 
 """
+# don;t use val in js 
+jscode2="""
+Java.perform(function(){
+    var Request = Java.use('com.h1702ctf.ctfone.Requestor');
+    var name = Request.hName();
+    var vVal = Request.hVal() ;
+    send(name)
+});
+"""
 
 def attach_to_process(proc_name):
     done = False
@@ -26,11 +35,11 @@ def attach_to_process(proc_name):
             pass
     return process
 
-def on_message(message, data):
-	print message 
+def on_message(message,data):
+    print message
 
 process = attach_to_process('com.h1702ctf.ctfone')
-script=process.create_script(jscode)
+script=process.create_script(jscode2)
 script.on('message' , on_message) 
 print 'start ctf' 
 script.load()
