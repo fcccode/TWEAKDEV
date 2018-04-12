@@ -1,33 +1,35 @@
 import frida 
 import sys 
 
-
-
-
 jscode = """
 Java.perform(function(){
 
-	var MainActivity = Java.use('com.example.seccon2015.rock_paper_scissors.MainActivity');
-	MainActivity.onClick.implementation = function(v){
-		send('OnClick');
-
-		this.onClick(v);
-		this.m.value = 0 ; 
-		this.m.value = 1 ; 
-		this.cnt.value = 999 ; 
-		console.log('Done'+JSON.stringify(this.cnt));	
+	var MainActivity = Java.use('cn.tongdun.frida64.MainActivity');
+	MainActivity.stringFromJNI.implementation = function(){
+		return "23333";
 	}
 
 });
 
 """
 
-
+def attach_to_process(proc_name):
+    done = False
+    process = None
+    while not done:
+        try:
+            process = frida.get_usb_device().attach(proc_name)
+            done = True
+        except Exception:
+            pass
+    return process
 
 def on_message(message, data):
 	print message 
 
-process = frida.get_usb_device().attach('com.example.seccon2015.rock_paper_scissors')
+packagename = "cn.tongdun.frida64"
+process = attach_to_process(packagename)
+
 script=process.create_script(jscode)
 script.on('message' , on_message) 
 print 'start ctf' 
